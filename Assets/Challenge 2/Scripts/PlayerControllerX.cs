@@ -2,17 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerControllerX : MonoBehaviour
 {
-    public GameObject dogPrefab;
-
+    [SerializeField] private GameObject spawnPoint;
+    [SerializeField] private GameObject dogPrefab;
+    [SerializeField] private float delayTime = 3.0f;
+    
+    private float _dogDelay = 0.0f;
+    
     // Update is called once per frame
     void Update()
     {
-        // On spacebar press, send dog
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (_dogDelay <= 0)
         {
-            Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _dogDelay = delayTime;
+                Instantiate(dogPrefab, spawnPoint.transform.position , spawnPoint.transform.rotation);
+            }
+        }
+        else
+        {
+            _dogDelay -= Time.deltaTime;
         }
     }
 }
