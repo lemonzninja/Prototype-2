@@ -25,6 +25,8 @@ public class PlayerControllerX : MonoBehaviour
         else
         {
             _dogDelay -= Time.deltaTime;
+            
+            Debug.Log("Dog Delay: " + _dogDelay.ToString("F2") + "s");
         }
     }
 }
