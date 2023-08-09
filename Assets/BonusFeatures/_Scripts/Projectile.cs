@@ -20,6 +20,10 @@ namespace BonusFeatures._Scripts
             if (other.CompareTag("Animal"))
             {
                 scoreManager.IncreaseScore(5);
+                // Destroy the projectile.
+                Destroy(gameObject);
+                // Destroy the animal.
+                Destroy(other.gameObject);
             }
         }
     }

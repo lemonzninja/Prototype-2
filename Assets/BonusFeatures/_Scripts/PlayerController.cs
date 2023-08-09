@@ -8,8 +8,8 @@ namespace BonusFeatures._Scripts
         [SerializeField] private float horizontalScreenBoundaryPos;
         [SerializeField] private float verticalScreenBoundaryPos;
     
-        private float horizontalInput;
-        private float verticalInput;
+        private float _horizontalInput;
+        private float _verticalInput;
     
         private Vector3 _playerPos;
         private Vector3 _position;
@@ -22,13 +22,14 @@ namespace BonusFeatures._Scripts
         
         // Add a small delay between firing projectiles.
         [SerializeField] private float delayTime = 0.5f;
-        [SerializeField] private float fireDelay = 0f;
+        [SerializeField] private float fireDelay;
         
         
         private void Start()
         {
-            _transform = transform;
-            _position = transform.position;
+            var transform1 = transform;
+            _transform = transform1;
+            _position = transform1.position;
         }
 
         private void Update()
@@ -41,19 +42,22 @@ namespace BonusFeatures._Scripts
         private void MovePlayer()
         {
             // Get left/right input.
-            horizontalInput = Input.GetAxis("Horizontal");
-            _position += Vector3.right * (horizontalInput * moveSpeed * Time.deltaTime);
+            _horizontalInput = Input.GetAxis("Horizontal");
+            _position += Vector3.right * (_horizontalInput * moveSpeed * Time.deltaTime);
         
             // Get up/down input.
-            verticalInput = Input.GetAxis("Vertical");
-            _position += Vector3.forward * (verticalInput * moveSpeed * Time.deltaTime);
+            _verticalInput = Input.GetAxis("Vertical");
+            _position += Vector3.forward * (_verticalInput * moveSpeed * Time.deltaTime);
         
             _transform.position = _position;
         }
         
-        // a function to Fire a projectile when the space bar is pressed.
         private void FireProjectile()
         {
+            /*
+             * Fire a projectile from the firePoint.
+             */
+            
             // Add a small delay between firing projectiles.
             if (fireDelay <= 0)
             {
