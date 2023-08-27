@@ -16,9 +16,16 @@ namespace BonusFeatures._Scripts
 
         private void OnTriggerEnter(Collider other)
         {
+            /*
+             *  - If the player collides with an animal, decrease the lives by 1.
+             */
+            
             if (other.gameObject.tag == "Animal")
             {
+                // Decrease the lives by 1.
                 livesManager.DecreaseLives();
+                
+                // Destroy the animal.
                 Destroy(other.gameObject);
             }
         }
