@@ -11,14 +11,27 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float sideSpawnPosX = 10.0f;
 
     private void Start()
-    {
+    {	
+	    /*
+	     *  - Start the SpawnRandomAnimal method every 1.5 seconds after 2 seconds.
+	     *	- Start the SpawnLeftAnimal method every 1.5 seconds after 2 seconds.
+	     *	- Start the SpawnRightAnimal method every 1.5 seconds after 2 seconds.
+	     */
+	    
 	    InvokeRepeating(nameof(SpawnRandomAnimal), 2, 1.5f);
 	    InvokeRepeating(nameof(SpawnLeftAnimal), 2, 1.5f);
 	    InvokeRepeating(nameof(SpawnRightAnimal), 2, 1.5f);
     }
-    
-    void SpawnRandomAnimal()
+
+    private void SpawnRandomAnimal()
 	{
+		/*
+		 * - Generate a random animal index.
+		 * - Generate a random spawn position.
+		 * - Instantiate a random animal.
+		 * - Spawn the animal at the random spawn position.
+		 */
+		
 	    var randomAnimal = UnityEngine.Random.Range(0, animalPrefabs.Length);
 	    var randomXPos = UnityEngine.Random.Range(-spawnRangeX, spawnRangeX);
 	    
@@ -27,19 +40,37 @@ public class SpawnManager : MonoBehaviour
 	    Instantiate(animalPrefabs[randomAnimal], spawnPos, animalPrefabs[randomAnimal].transform.rotation);
 	}
 
-    void SpawnLeftAnimal()
+    private void SpawnLeftAnimal()
     {
-	    int randomAnimal = UnityEngine.Random.Range(0, animalPrefabs.Length);
-	    Vector3 spawnPos = new Vector3(-sideSpawnPosX, 0, UnityEngine.Random.Range(-sideSpawnRangeZ, sideSpawnRangeZ));
-	    Vector3 rotation = new Vector3(0, 90, 0);
+	    /*
+	     * Spawn animals on the left side of the screen.
+	     * - Generate a random animal index.
+	     * - Generate a random spawn position.
+	     * - Instantiate a random animal.
+	     * - Spawn the animal at the random spawn position.
+	     */
+	    
+	    var randomAnimal = UnityEngine.Random.Range(0, animalPrefabs.Length);
+	    var spawnPos = new Vector3(-sideSpawnPosX, 0, UnityEngine.Random.Range(-sideSpawnRangeZ, sideSpawnRangeZ));
+	    
+	    var rotation = new Vector3(0, 90, 0);
 	    Instantiate(animalPrefabs[randomAnimal], spawnPos, Quaternion.Euler(rotation));
     }
-    
-    void SpawnRightAnimal()
+
+    private void SpawnRightAnimal()
 	{
-	    int randomAnimal = UnityEngine.Random.Range(0, animalPrefabs.Length);
-	    Vector3 spawnPos = new Vector3(sideSpawnPosX, 0, UnityEngine.Random.Range(-sideSpawnRangeZ, sideSpawnRangeZ));
-	    Vector3 rotation = new Vector3(0, -90, 0);
+		/*
+		 * Spawn animals on the right side of the screen.
+		 *  - Generate a random animal index.
+		 * - Generate a random spawn position.
+		 * - Instantiate a random animal.
+		 * - Spawn the animal at the random spawn position.
+		 */
+		
+	    var randomAnimal = UnityEngine.Random.Range(0, animalPrefabs.Length);
+	    var spawnPos = new Vector3(sideSpawnPosX, 0, UnityEngine.Random.Range(-sideSpawnRangeZ, sideSpawnRangeZ));
+	    
+	    var rotation = new Vector3(0, -90, 0);
 	    Instantiate(animalPrefabs[randomAnimal], spawnPos, Quaternion.Euler(rotation));
 	}
 }
