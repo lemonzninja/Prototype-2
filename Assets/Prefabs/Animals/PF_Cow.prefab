@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 9212449636833644358}
   m_Layer: 0
   m_Name: PF_Cow
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -485,7 +485,7 @@ Transform:
   m_Children:
   - {fileID: 99234489383229221}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &7703480707312108326
 Animator:

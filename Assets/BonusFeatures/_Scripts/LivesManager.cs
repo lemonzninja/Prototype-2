@@ -11,12 +11,13 @@ namespace BonusFeatures._Scripts
         private void Start()
         {
             _lives = 3;
-UpdateLives();
+            UpdateLives();
         }
 
         public void DecreaseLives()
         {
-            _lives -= 1;   
+            _lives -= 1;
+            UpdateLives();
         }
 
         private void UpdateLives()
